@@ -53,32 +53,38 @@ def make_addr_packet(addr):
     return (addr6) + (addr5 << 1) + (addr4 << 2) + (addr3 << 3) + (addr2 << 4) + (addr1<<5) + (addr0 << 6)
 
 #def write_single(addr, d0, d1, d2, d3, d4, d5, d6, d7):
+   
+    
+def read_wc():
+    addr = int(input("target read addr.:"))
+    print('')
+    
+    if(addr > 63):
+        print("invalid target address!")
+        return -1 
+    
+    addr_reversed = make_addr_packet(addr)
+    spi_packet = (1<<15) + (addr_reversed<<8) + 0
+    
+    dut_tx_data.write(spi_packet,0xffff)
+    send_trig()
+    
+    data_read = dut_rx_data.read()
+    bin_data_read = bin(data_read)
+    
+    #print("addr %i data: 0x%X",data_read)
+    #print("addr %i data ==> ", bin_data_read)
+    
+    print("Addr:",addr,"|| data: ",bin_data_read[2:].zfill(8),"read")
+    
+    return bin_data_read
+    
     
 
 def write_single_wc(): #dut spi write with command
     addr = int(input("target addr: "))
     print(' ')
-    """
-    addr_ld1 = addr%2
-    addr_ld2 = addr%4
-    addr_ld3 = addr%8
-    addr_ld4 = addr%16
-    addr_ld5 = addr%32
-    addr_ld6 = addr%64
-    addr_ld7 = addr%128
-    
-    addr0 = addr_ld1
-    addr1 = (addr_ld2 - addr_ld1)>>1
-    addr2 = (addr_ld3 - addr_ld2)>>2
-    addr3 = (addr_ld4 - addr_ld3)>>3
-    addr4 = (addr_ld5 - addr_ld4)>>4
-    addr5 = (addr_ld6 - addr_ld5)>>5
-    addr6 = (addr_ld7 - addr_ld6)>>6 
-    
-    #print(addr0, addr1, addr2, addr3, addr4, addr5, addr6)
-    
-    addr_reversed = (addr6) + (addr5 << 1) + (addr4 << 2) + (addr3 << 3) + (addr2 << 4) + (addr1<<5) + (addr0 << 6)
-    """
+   
     addr_reversed = make_addr_packet(addr)
 
     #print(addr_reversed)
@@ -96,7 +102,36 @@ def write_single_wc(): #dut spi write with command
         else:
             data_packet = data_packet + current_bit * weight 
         index = index + 1
-        print(' ')
+        
+        
+    spi_packet = (0<<15) + (addr_reversed<<8) + data_packet
+    #print(hex(data_packet), hex(addr_reversed), hex(spi_packet))
+ 
+    dut_tx_data.write(int(spi_packet),0xffff)
+    send_trig()
+    print(' ')
+    print("Addr:",addr,"|| data: ",bin(spi_packet%256)[2:].zfill(8),"sent")
+    
+def write_single(addr,b0,b1,b2,b3,b4,b5,b6,b7): #dut spi write with input
+    
+    addr_reversed = make_addr_packet(addr)
+    
+    weight_array = np.array([128,64,32,16,8,4,2,1])
+    data_array = np.array([b0,b1,b2,b3,b4,b5,b6,b7])
+    
+    index = 0
+    data_packet = 0 
+    for weight in weight_array:
+        #print(weight)
+        #print(index,"th bit")
+        current_bit = data_array[index]
+        #print("debug: data value ==>",current_bit)
+        if(current_bit > 1): 
+            print("FALSE INPUT!!!")
+            return 0
+        else:
+            data_packet = data_packet + current_bit * weight 
+        index = index + 1
         
     spi_packet = (0<<15) + (addr_reversed<<8) + data_packet
     #print(hex(data_packet), hex(addr_reversed), hex(spi_packet))
@@ -104,9 +139,10 @@ def write_single_wc(): #dut spi write with command
     dut_tx_data.write(int(spi_packet),0xffff)
     send_trig()
     
-    print("DUT SPI packet: ",hex(spi_packet),"sent")
+    print("Addr:",addr,"|| data: ",bin(spi_packet%128)[2:].zfill(8),"sent")
     
-def update_addr0to15():
+    
+def commit_w_addr0to15():  ## write commit (from addr0 to addr15)
     #write 1 to addr 127 & write 0 to addr 127 (after write addr 0 ~ 15)
     #update addr 0 ~ 15 together 
     

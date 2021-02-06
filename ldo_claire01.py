@@ -115,4 +115,6 @@ def change_core_supply_command():
     #Write new value
     new_volt = float(input("Target voltage (e.g. 400.01 ==> 400.01mV): "))
     ldo.ldo_w_single(brd_num, addr, new_volt)
+    
+    print('')
    
