@@ -228,7 +228,7 @@ def consecutive_read():
     
     temp_avg = temp_tot/num
     
-    print("average temperature is: ", temp_avg)
+    print("average temperature is: %0.2f" %(temp_avg))
     
 
 
