@@ -18,7 +18,7 @@ VDD_DIV_LOGIC = 400.00
 VDD_BBPFD = 400.0
 VDD_DIV_LOGIC_TEST = 400.0 
 VDD_GVCO_FIC = 400.0
-VDD_GVCO_CTAT = 370.0 #400.0 
+VDD_GVCO_CTAT = 400.0 #400.0 
 VDD_CORE_DBUF = 400.0
 VDD03_TEST = 300.0
 VDD10_TEST = 1000.0 
@@ -44,7 +44,7 @@ ldo_array_b2 = np.array(
              400, #LDO1: VDD_BBPFD
              400,#LDO2: VDD_DIV_LOGIC_TEST
              400, #LDO3: VDD_GVCO_FIC
-             380, #LDO4: VDD_GVCO_CTAT
+             400, #LDO4: VDD_GVCO_CTAT
              600, #LDO5: VDD_CORE_DBUF
              300, #LDO6: VDD03_TEST
              VDD10_TEST #LDO7: VDD10_TEST
