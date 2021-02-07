@@ -9,6 +9,21 @@ brd1_vref = 1367
 dac_fs_bin = 65535
 one_us = 1/1000000
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
+#print(color.BOLD + 'Hello World !' + color.END)
+
+
 
 trig_ldo_dut_ip = ol.ip_dict['gpio_spi_trig_ldo_dut']
 ldo_tx_rx_data_ip = ol.ip_dict['gpio_spi_ldo_tx_rx_data']

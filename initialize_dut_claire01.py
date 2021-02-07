@@ -75,11 +75,11 @@ spi_data_array = np.array(
             [
                     ##KVCO Control || Target: O_THER_31_A<7:0>
                     ##Minimum: 0_0000 || Maximum: 0_1000
-                    0,	##I_BIN_5B_CTL_A<0>
+                    1,	##I_BIN_5B_CTL_A<0>
                     0,	##I_BIN_5B_CTL_A<1>
                     0,	##I_BIN_5B_CTL_A<2>
                     0,	##I_BIN_5B_CTL_A<3>
-                    1,	##I_BIN_5B_CTL_A<4>
+                    0,	##I_BIN_5B_CTL_A<4>
                     0, 0, 0
             ],	##ADDR10
             [
@@ -87,9 +87,9 @@ spi_data_array = np.array(
                     ##Minimum: 0_0000 || Maximum: 1_0100
                     ##More "1" More Capacitance
                     0,	##I_BIN_5B_CTL_B<0>
-                    0,	##I_BIN_5B_CTL_B<1>
+                    1,	##I_BIN_5B_CTL_B<1>
                     0,	##I_BIN_5B_CTL_B<2>
-                    0,	##I_BIN_5B_CTL_B<3>
+                    1,	##I_BIN_5B_CTL_B<3>
                     0,	##I_BIN_5B_CTL_B<4>
                     0, 0, 0
             ],	##ADDR11
@@ -170,7 +170,7 @@ spi_data_array = np.array(
             ], ##ADDR18
             [
                     0,
-                    0,	##BW_CTL_BIN<0> ==> "11": widest bandwidth (== short gvco accumulation time)
+                    1,	##BW_CTL_BIN<0> ==> "11": widest bandwidth (== short gvco accumulation time)
                     0,	##BW_CTL_BIN<1> ==> "00: longest gvco acc. time ==> large ti-amp gain
                     0,	##TDC_BW_CTL_BIN<0> "11" ==> fastest CK_REF_TDC
                     0,	##TDC_BW_CTL_BIN<1> (TODO: what this means?)
@@ -186,7 +186,7 @@ spi_data_array = np.array(
             ],	##ADDR20
             [
                     0,	##EN_CHOP
-                    1,	##CK_CHOP_DIV_SEL ("0" ==> slow chopping clock (#2)
+                    0,	##CK_CHOP_DIV_SEL ("0" ==> slow chopping clock (#2)
                     1,	##PFD_CLK_SWAP ["0" => Origin direction || "1" => direction change ]
                     0,	##CK_FIC_TO_GPIO_PREDRV_SEL ["0" => CK_PRE_CHOP || "1" => CK_POST_CHOP ]
                     0,	##CK_CTAT_TO_GPIO_PREDRV_SEL ["0" => CK_PRE_CHOP || "1" => CK_POST_CHOP ]
@@ -247,20 +247,20 @@ spi_data_array = np.array(
             [
                     ##GPIO5
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
                     0,	##S<0> (11: CK_CHOP_N, 10: CK_INJ_N)
-                    1,	##S<1> (01: CK_INJB_N, 00: CK_SWC_N)
+                    0,	##S<1> (01: CK_INJB_N, 00: CK_SWC_N)
                     1,	##IO_DIR ("1" output direction) (input: CSW_DSM_CTL)
                     0
             ],	##ADDR56
             [
                     ##GPIO4
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
                     1,	##S<0> (11: CK_REF_P, 10: CK_INJB_P)
                     1,	##S<1> (01: CK_SWC_P, 00: VSS)
                     1,	##IO_DIR ("1" output direction) (input: PD_OFFSET_GAIN_B_DSM)
@@ -269,21 +269,21 @@ spi_data_array = np.array(
             [
                     ##GPIO3
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##S<0> (11: CK_REF_N, 10:CK_INJ_P)
-                    0,	##S<1> (01: FOUT_N, 00: CK_CHOP_P)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##S<0> (11: CK_REF_N, 10:CK_INJ_P)
+                    1,	##S<1> (01: FOUT_N, 00: CK_CHOP_P)
                     1,	##IO_DIR ("1" output direction) (input: ck_stup (~200kHz))
                     0
             ],	##ADDR58
             [
                     ##GPIO2
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##S<0> (11: CK_FIC_N, 10:VSS)["11" ==> CK_CTAT in CLAIRE01 when Chopping disabled]
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    1,	##S<0> (11: CK_FIC_N, 10:VSS)["11" ==> CK_CTAT_N in CLAIRE01 when Chopping disabled]
                     1,	##S<1> (01: CK_REF_TDC_P, 00: CK_REF_TDC_N)
                     1,	##IO_DIR ("1" output direction)
                     0
@@ -291,10 +291,10 @@ spi_data_array = np.array(
             [
                     ##GPIO1
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##S<0> (11: CK_CTAT, 10: VSS)["11" ==> CK_FIC_N in CLAIRE01 when Chopping disabled]
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    1,	##S<0> (11: CK_CTAT, 10: VSS)["11" ==> CK_FIC in CLAIRE01 when Chopping disabled]
                     1,	##S<1> (01: DSM_OUT_GPIO, 00: DSM_OUT_GPIO)
                     1,	##IO_DIR ("1" output direction)
                     0
