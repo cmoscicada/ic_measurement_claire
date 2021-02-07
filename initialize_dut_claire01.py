@@ -187,7 +187,7 @@ spi_data_array = np.array(
             [
                     0,	##EN_CHOP
                     1,	##CK_CHOP_DIV_SEL ("0" ==> slow chopping clock (#2)
-                    0,	##PFD_CLK_SWAP ["0" => Origin direction || "1" => direction change ]
+                    1,	##PFD_CLK_SWAP ["0" => Origin direction || "1" => direction change ]
                     0,	##CK_FIC_TO_GPIO_PREDRV_SEL ["0" => CK_PRE_CHOP || "1" => CK_POST_CHOP ]
                     0,	##CK_CTAT_TO_GPIO_PREDRV_SEL ["0" => CK_PRE_CHOP || "1" => CK_POST_CHOP ]
                     0,	##CK_CTAT_TO_TDC_RIPPLE_CNT_SEL ["0" => CK_PRE_CHOP || "1" => CK_POST_CHOP ]
@@ -283,7 +283,7 @@ spi_data_array = np.array(
                     1,	##gpio driving strength control ("1" stronger)
                     1,	##gpio driving strength control ("1" stronger)
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##S<0> (11: CK_FIC_N, 10:VSS)
+                    1,	##S<0> (11: CK_FIC_N, 10:VSS)["11" ==> CK_CTAT in CLAIRE01 when Chopping disabled]
                     1,	##S<1> (01: CK_REF_TDC_P, 00: CK_REF_TDC_N)
                     1,	##IO_DIR ("1" output direction)
                     0
@@ -294,7 +294,7 @@ spi_data_array = np.array(
                     1,	##gpio driving strength control ("1" stronger)
                     1,	##gpio driving strength control ("1" stronger)
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##S<0> (11: CK_CTAT, 10: VSS)
+                    1,	##S<0> (11: CK_CTAT, 10: VSS)["11" ==> CK_FIC_N in CLAIRE01 when Chopping disabled]
                     1,	##S<1> (01: DSM_OUT_GPIO, 00: DSM_OUT_GPIO)
                     1,	##IO_DIR ("1" output direction)
                     0
