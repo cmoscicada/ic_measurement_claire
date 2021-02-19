@@ -12,6 +12,7 @@ VDD_CHOP = 380.0 #400
 VDD_CP = 400.0
 VDD = 400.0
 VDD_LEAK_DMY_IN = 400.0
+VDD_FOUT = 1000.0
 
 #LDO BOARD1
 VDD_DIV_LOGIC = 400.00 
@@ -25,6 +26,7 @@ VDD10_TEST = 1000.0
 
 # CLAIRE01 B2 Chip FLL operation verified (210207 12:58PM) (KVCO = 0)
 # by using PD, it was impossible to operate FLL (Chopping disabled condition)
+# VDD_LEAK_DMY_IN changed to VDD_FOUT
 # (TODO) test PD use with chopping 
 ldo_array_b2 = np.array(
         [
@@ -36,7 +38,7 @@ ldo_array_b2 = np.array(
              500, #LDO4: VDD_CHOP
              400, #LDO5: VDD_CP
              500, #LDO6: VDD
-             VDD_LEAK_DMY_IN #LDO7: VDD_LEAK_DMY_IN
+             VDD_FOUT #LDO7: VDD_LEAK_DMY_IN ==> changed to VDD_FOUT
             ],
             #LDO BOARD1
             [
@@ -64,7 +66,7 @@ ldo_array = np.array(
              VDD_CHOP, #LDO4: VDD_CHOP
              VDD_CP, #LDO5: VDD_CP
              VDD, #LDO6: VDD
-             VDD_LEAK_DMY_IN #LDO7: VDD_LEAK_DMY_IN
+             VDD_FOUT #LDO7: VDD_LEAK_DMY_IN ==> changed to VDD_FOUT
             ],
             #LDO BOARD1
             [

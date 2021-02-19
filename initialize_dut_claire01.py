@@ -194,8 +194,8 @@ spi_data_array = np.array(
                     0,	##CK_CTAT_TO_TDC_RIPPLE_CNT_POLARITY_SEL ["0" => Origin polarity || "1" => Inverted polarity]
                     0
             ],	##ADDR21
-            [1,1,1,1,1,1,1,1],	##ADDR22 (CLK IO:: PUSH_ENB<7:0> ==> disable all push io)
-            [0,0,0,0,1,1,1,1],	##ADDR23 (CLK IO:: PULL_ENB<7:0>: all "0" ==> strongest pull down)
+            [0,0,0,0,0,0,0,1],	##ADDR22 (CLK IO:: PUSH_ENB<7:0> ==> disable all push io)
+            [1,1,1,1,1,1,1,1],	##ADDR23 (CLK IO:: PULL_ENB<7:0>: all "0" ==> strongest pull down)
             [
                     0,	##IO_ENB ("0": turn on 50-ohm matched push-pull io)
                     0,	##CKIO_SEL<0> ==> (00: main clock  || 01: CK_GVCO_CTAT)
