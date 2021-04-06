@@ -181,17 +181,27 @@ def sel_io_50ohm(): ## select signal to plot by 50 ohm io
     
     
 def set_str_io_50ohm(): #program 50ohm io pull down strength
-    pull_strength = int(input("enter 50-ohm io strength (0~8)"))
+    pull_strength = int(input("enter 50-ohm io strength [PULL] (0~8)"))
     pull_str_bit = [1, 1, 1, 1, 1, 1, 1, 1]
     
-    index = pull_strength
-    while (index > 0):
+    index_l = pull_strength
+    while (index_l > 0):
         #print("        debug: index: ", index)
-        pull_str_bit[index-1] = 0
-        index = index - 1
-        
+        pull_str_bit[index_l-1] = 0
+        index_l = index_l - 1
+    
+    push_strength = int(input("enter 50-ohm io strength [PUSH] (0~8)"))
+    push_str_bit = [1, 1, 1, 1, 1, 1, 1, 1]
+    
+    index_h = push_strength
+    while (index_h > 0):
+        #print("        debug: index: ", index)
+        push_str_bit[index_h-1] = 0
+        index_h = index_h - 1
+    
     #print("debug", pull_str_bit)
-    write_single(22,1,1,1,1,1,1,1,1) ## disable push
+    #write_single(22,1,1,1,1,1,1,1,1) ## disable push
+    write_single(22,push_str_bit[0],push_str_bit[1],push_str_bit[2],push_str_bit[3],push_str_bit[4],push_str_bit[5],push_str_bit[6],push_str_bit[7])
     write_single(23,pull_str_bit[0],pull_str_bit[1],pull_str_bit[2],pull_str_bit[3],pull_str_bit[4],pull_str_bit[5],pull_str_bit[6],pull_str_bit[7])
     
     
