@@ -302,9 +302,9 @@ spi_data_array = np.array(
             [
                     ##GPIO0 (fixed to ouput direction)
                     1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
-                    1,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
+                    0,	##gpio driving strength control ("1" stronger)
                     0, 0, 0, 0
             ],	##ADDR61
             [
