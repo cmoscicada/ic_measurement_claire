@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr  7 21:46:50 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr  7 19:27:11 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="www.digilentinc.com:pynq-z1:part0:1.0" DEVICE="7z020" NAME="CICADA_N_CLAIRE" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -2092,9 +2092,9 @@
             <CONNECTION INSTANCE="MUX_2_to_1_12" PORT="o_mux"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="11" NAME="i_TX_Byte" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
+        <PORT DIR="I" LEFT="11" NAME="i_TX_Byte" RIGHT="0" SIGIS="undef" SIGNAME="xlslice_3_Dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="gpio_dsm_input_trig" PORT="gpio_io_o"/>
+            <CONNECTION INSTANCE="xlslice_3" PORT="Dout"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="i_TX_trig" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio2_io_o">
@@ -3326,7 +3326,7 @@
             <REGISTER NAME="GPIO_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x0"/>
-              <PROPERTY NAME="SIZE" VALUE="12"/>
+              <PROPERTY NAME="SIZE" VALUE="24"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -3339,14 +3339,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="12"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="24"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-1 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x4"/>
-              <PROPERTY NAME="SIZE" VALUE="12"/>
+              <PROPERTY NAME="SIZE" VALUE="24"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -3359,7 +3359,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="12"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="24"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -3490,7 +3490,7 @@
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
         <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="12"/>
+        <PARAMETER NAME="C_GPIO_WIDTH" VALUE="24"/>
         <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
         <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
@@ -3606,11 +3606,11 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M07_AXI_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="11" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
+        <PORT DIR="O" LEFT="23" NAME="gpio_io_o" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xlslice_1" PORT="Din"/>
             <CONNECTION INSTANCE="xlslice_2" PORT="Din"/>
-            <CONNECTION INSTANCE="dsm_resetter_12b" PORT="i_TX_Byte"/>
+            <CONNECTION INSTANCE="xlslice_3" PORT="Din"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio2_io_o">
@@ -11444,7 +11444,7 @@
     <MODULE COREREVISION="2" FULLNAME="/xlslice_1" HWVERSION="1.0" INSTANCE="xlslice_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="DIN_WIDTH" VALUE="12"/>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="24"/>
         <PARAMETER NAME="DIN_FROM" VALUE="3"/>
         <PARAMETER NAME="DIN_TO" VALUE="0"/>
         <PARAMETER NAME="Component_Name" VALUE="CICADA_N_CLAIRE_xlslice_1_0"/>
@@ -11452,7 +11452,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="11" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
+        <PORT DIR="I" LEFT="23" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gpio_dsm_input_trig" PORT="gpio_io_o"/>
           </CONNECTIONS>
@@ -11589,15 +11589,15 @@
     <MODULE COREREVISION="2" FULLNAME="/xlslice_2" HWVERSION="1.0" INSTANCE="xlslice_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="DIN_WIDTH" VALUE="12"/>
-        <PARAMETER NAME="DIN_FROM" VALUE="7"/>
-        <PARAMETER NAME="DIN_TO" VALUE="0"/>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="24"/>
+        <PARAMETER NAME="DIN_FROM" VALUE="11"/>
+        <PARAMETER NAME="DIN_TO" VALUE="4"/>
         <PARAMETER NAME="Component_Name" VALUE="CICADA_N_CLAIRE_xlslice_1_1"/>
         <PARAMETER NAME="DOUT_WIDTH" VALUE="8"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" LEFT="11" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
+        <PORT DIR="I" LEFT="23" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
           <CONNECTIONS>
             <CONNECTION INSTANCE="gpio_dsm_input_trig" PORT="gpio_io_o"/>
           </CONNECTIONS>
@@ -11605,6 +11605,30 @@
         <PORT DIR="O" LEFT="7" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="xlslice_2_Dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="dsm_resetter_8b" PORT="i_TX_Byte"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="2" FULLNAME="/xlslice_3" HWVERSION="1.0" INSTANCE="xlslice_3" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlslice" VLNV="xilinx.com:ip:xlslice:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="DIN_WIDTH" VALUE="24"/>
+        <PARAMETER NAME="DIN_FROM" VALUE="23"/>
+        <PARAMETER NAME="DIN_TO" VALUE="12"/>
+        <PARAMETER NAME="Component_Name" VALUE="CICADA_N_CLAIRE_xlslice_2_0"/>
+        <PARAMETER NAME="DOUT_WIDTH" VALUE="12"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="23" NAME="Din" RIGHT="0" SIGIS="undef" SIGNAME="gpio_dsm_input_trig_gpio_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="gpio_dsm_input_trig" PORT="gpio_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="11" NAME="Dout" RIGHT="0" SIGIS="undef" SIGNAME="xlslice_3_Dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dsm_resetter_12b" PORT="i_TX_Byte"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
