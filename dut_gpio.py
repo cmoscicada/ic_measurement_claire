@@ -6,6 +6,7 @@ import numpy as np
 import time
 
 import dut_spi
+import controls
 
 gpio_dir_2_3_ip = ol.ip_dict['gpio_dir_2_gpio_dir_3']
 gpio_dir_4_5_ip = ol.ip_dict['gpio_dir_4_gpio_dir_5']
@@ -45,17 +46,22 @@ def rst():
     print('')    
     rd_status()
 
-def set_out():
+def set_out_claire01():
     #(IMPORTANT) Change gpio direction of dut first
     print("change gpio direction: PYNQ ==> DUT")
     gpio_num = int(input("Input the gpio number to control (""3"", ""4"", ""5""): "))
     if(gpio_num == 3):
+        ##clk_stup
+        print("supply CK_STUP_SWC to DUT GPIO3")
         dut_spi.write_single(58,0,0,0,0,0,0,0,0)#GPIO3: addr58, in dir
         gpio_dir_3.write(1,0xf)
+        controls.clk_stup()
     elif(gpio_num == 4):
+        print("supply PD_OFFSET_GAIN_B_DSM to DUT GPIO4")
         dut_spi.write_single(57,0,0,0,0,0,0,0,0)#GPIO4: addr57, in dir
         gpio_dir_4.write(1,0xf)
     elif(gpio_num == 5):
+        print("supply CSW_DSM_CTL to DUT GPIO5")
         dut_spi.write_single(56,0,0,0,0,0,0,0,0)#GPIO5: addr56, in dir
         gpio_dir_5.write(1,0xf)
     else:
