@@ -4,8 +4,8 @@ ol = Overlay("./overlays/CICADA_N_CLAIRE.bit")
 
 import time
 
-brd0_vref = 2494
-brd1_vref = 1367
+brd0_vref = 3924
+brd1_vref = 3924
 dac_fs_bin = 65535
 one_us = 1/1000000
 
